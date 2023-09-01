@@ -13,3 +13,6 @@ SELECT cupcakes.name, SUM(orders.num_cupcakes) FROM cupcakes  LEFT JOIN orders O
 SELECT customers.email, SUM(orders.num_cupcakes) AS total FROM customers LEFT JOIN orders ON customers.id = orders.customer_id GROUP BY customers.email ORDER BY customers.email;
 -- Problem 6
 SELECT fname, lname, email FROM customers JOIN orders ON customers.id = orders.customer_id WHERE cupcake_id = (SELECT id FROM cupcakes WHERE name = 'funfetti') AND orders.processed = true GROUP BY customers.fname, customers.lname, customers.email;
+
+SELECT * FROM animals;
+SELECT * FROM humans;
