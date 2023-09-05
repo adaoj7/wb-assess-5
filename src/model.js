@@ -11,6 +11,7 @@ export class Human extends Model {
 
   getFullName() {
     // TODO: Implement this method
+    // for (let i = 0; i < Human.length; )
     return (`${this.fname} ${this.lname}`)
   }
 }

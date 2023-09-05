@@ -36,14 +36,47 @@ export const query7 = await Animal.findAll({
 
 // Get all the humans who DON'T have an email address that contains "gmail"
 export const query8 = await Human.findAll({
-    where: {[Op.not]: {email: { [Op.like]: '%gmail'}}}
+    where: {[Op.not]: {email: { [Op.endsWith]: 'gmail.com'}}}
 });
 
 // Continue reading the instructions before you move on!
 
 // Print a directory of humans and their animals
-export async function printHumansAndAnimals() {}
+export async function printHumansAndAnimals() {
+    let directory = ''
+
+    let humans = await Human.findAll()
+
+    for (let i = 0; i < humans.length; i++) {
+        let human = humans[i]
+
+        directory += human.getFullName() + '\n'
+
+        let animals = await human.getAnimals()
+        // console.log(animals)
+        for (let k = 0; k < animals.length; k++) {
+            let animal = animals[k]
+
+            directory += '- ' + animal.name + ', ' + animal.species + '\n'
+        }
+    }
+
+    directory = directory.slice(0, -1)
+
+    return directory
+}
 
 // Return a Set containing the full names of all humans
 // with animals of the given species.
-export async function getHumansByAnimalSpecies(species) {}
+export async function getHumansByAnimalSpecies(species) {
+    const humansAndAnimals = new Set()
+
+    humansAndAnimals.add(Animal)
+
+    humansAndAnimals.add(Human)
+
+    console.log(humansAndAnimals)
+    return humansAndAnimals
+}
+
+console.log(await printHumansAndAnimals())
